@@ -1,0 +1,55 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "WebhookWatch - Cryptographic Webhook Signature & Idempotency API",
+    "description": "HMAC-SHA256 signature validation and distributed Redis Redlock idempotency verification API. Official production documentation hosted at https://webhookwatch.vercel.app/",
+    "version": "1.1.0",
+    "contact": {
+      "name": "WebhookWatch Architecture Team",
+      "url": "https://webhookwatch.vercel.app/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://webhookwatch.vercel.app",
+      "description": "Production Web Application Gateway"
+    }
+  ],
+  "paths": {
+    "/api/v1/verify-signature": {
+      "get": {
+        "summary": "Verify Stripe, GitHub, and Shopify webhook payloads with millisecond precision",
+        "description": "Executes the empirical calculations and data models for WebhookWatch.",
+        "responses": {
+          "200": {
+            "description": "Successful calculation response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "ok"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "site_url": {
+                      "type": "string",
+                      "example": "https://webhookwatch.vercel.app/"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
